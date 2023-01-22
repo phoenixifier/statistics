@@ -1,1 +1,2 @@
-# Statistics-Formula
+-> Statistics Formula
+-> All formula needed for university students learning Statistics
