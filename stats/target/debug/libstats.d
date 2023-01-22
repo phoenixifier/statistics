@@ -1,1 +1,0 @@
-C:\Users\Rasul\Documents\GitHub\Statistics-Formula\stats\target\debug\libstats.rlib: C:\Users\Rasul\Documents\GitHub\Statistics-Formula\stats\src\base.rs C:\Users\Rasul\Documents\GitHub\Statistics-Formula\stats\src\lib.rs
