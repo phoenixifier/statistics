@@ -2,7 +2,7 @@ mod base;
 use sqrt::sqrt;
 use crate::base::factorial;
 
-//For Binomial Distribution
+/// For Binomial Distribution
 pub struct Binom{
     pub n: u32, // number of trials
     pub p: f64, // probability of success
