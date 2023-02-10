@@ -1,7 +1,12 @@
 use stats::Binom;
 
 fn main() {
-    let num = Binom {n: 5, p: 0.75, q: 0.25, x: 0};
-    println!("{}", num.variance());
+    let num = Binom {
+        trials_num: 5,
+        success_probability: 0.75,
+        failure_probability: 0.25,
+        successes_num: 0
+    };
+    num.variance();
 }
 
