@@ -1,50 +1,51 @@
 mod base;
 use sqrt::sqrt;
-use crate::base::factorial;
+use crate::base::{factorial, float_power};
 
 /// For Binomial Distribution
 pub struct Binom{
     pub trials_num: u32, // number of trials
-    pub success_probability: f64, // probability of success
-    pub failure_probability: f64, // probability of failure
-    pub successes_num: u32, // number of success
+    pub success_prob: f64, // probability of success
+    pub failure_prob: f64, // probability of failure
+    pub success_num: u32, // number of success
 }
 
 impl Binom{
     pub fn new(trials_num: u32,
-               success_probability: f64,
-               failure_probability: f64,
-               successes_num: u32) -> Binom{
+               success_prob: f64,
+               failure_prob: f64,
+               success_num: u32) -> Binom{
+
         Binom{
             trials_num,
-            success_probability,
-            failure_probability,
-            successes_num
+            success_prob,
+            failure_prob,
+            success_num
         }
     }
 
     pub fn mean(&self) -> f64{
-        self.trials_num as f64 * self.success_probability
+        self.trials_num as f64 * self.success_prob
     }
 
     pub fn variance(&self) -> f64 {
-        self.mean() * self.failure_probability
+        self.mean() * self.failure_prob
     }
 
     pub fn std_deviation(&self) -> f64 {
-       sqrt(self.variance() as f64)
+       sqrt(self.variance())
     }
 
     pub fn binom_distribution(&self) -> f64 {
-        (factorial(self.trials_num) as f64 /
-        ((factorial(self.trials_num - self.successes_num) as f64) *
-            factorial(self.successes_num) as f64)) *
-        ((self.success_probability as u32 ^ self.successes_num ) as f64 *
-            (self.failure_probability as u32 ^ (self.trials_num - self.successes_num)) as f64)
+        (factorial(self.trials_num) as f64 *
+        float_power(self.success_prob, self.success_num) *
+        float_power(self.failure_prob, self.trials_num - self.success_num)) /
+        factorial(self.trials_num - self.success_num) as f64 *
+        factorial(self.success_num) as f64
     }
 }
 
-//For Uniform Distributiion
+//For Uniform Distribution
 pub struct Uniform{
     pub a: f64,
     pub b: f64,
@@ -71,21 +72,20 @@ impl Uniform{
     }
 }
 
-fn float_power(num: f64, power: u32) -> f64{
-    let mut result: f64 = 1.0;
-
-    for i in 0..power {
-        result *= num;
-    }
-    result
-}
-
 #[cfg(test)]
-mod tests{
-   use super::*;
+mod tests {
+    use super::*;
 
     #[test]
-    fn power_test() {
-        assert_eq!(float_power(2.4, 3), 13.824);
+    fn binom_test(){
+        let values = Binom{
+            trials_num: 2,
+            success_prob: 2.0,
+            failure_prob: 1.0,
+            success_num: 1
+        };
+        let result = values.binom_distribution();
+        assert_eq!(result, 4.0);
     }
 }
+
