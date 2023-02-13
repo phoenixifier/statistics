@@ -7,6 +7,6 @@ fn main() {
         failure_prob: 0.25,
         success_num: 0
     };
-    num.variance();
+    num.binom_distribution();
 }
 

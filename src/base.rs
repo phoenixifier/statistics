@@ -1,12 +1,12 @@
-
 //Factorial of a given number
-pub fn factorial(num: u32) -> u32{
+pub fn factorial(num: usize) -> usize{
     if num == 1{
         num
     }
     else {
-        return num * factorial(num - 1)
+        num * factorial(num - 1)
     }
+
 }
 
 pub fn float_power(num: f64, power: u32) -> f64{

@@ -37,11 +37,11 @@ impl Binom{
     }
 
     pub fn binom_distribution(&self) -> f64 {
-        (factorial(self.trials_num) as f64 *
+        (factorial(self.trials_num as usize) as f64 *
         float_power(self.success_prob, self.success_num) *
         float_power(self.failure_prob, self.trials_num - self.success_num)) /
-        factorial(self.trials_num - self.success_num) as f64 *
-        factorial(self.success_num) as f64
+        factorial((self.trials_num - self.success_num)as usize) as f64 *
+        factorial(self.success_num as usize) as f64
     }
 }
 
